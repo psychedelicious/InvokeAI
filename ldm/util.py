@@ -235,3 +235,21 @@ def rand_perlin_2d(shape, res, device, fade = lambda t: 6*t**5 - 15*t**4 + 10*t*
     n11 = dot(tile_grads([1, None], [1, None]), [-1,-1]).to(device)
     t = fade(grid[:shape[0], :shape[1]])
     return math.sqrt(2) * torch.lerp(torch.lerp(n00, n10, t[..., 0]), torch.lerp(n01, n11, t[..., 0]), t[..., 1]).to(device)
+
+
+def debug_image(debug_image, debug_text, debug_show=True, debug_result=False, debug_status=False ):
+    if not debug_status:
+        return
+    
+    image_copy = debug_image.copy()
+    ImageDraw.Draw(image_copy).text(
+        (5, 5),
+        debug_text,
+        (255, 0, 0)
+    )
+
+    if debug_show:
+        image_copy.show()
+
+    if debug_result:
+        return image_copy

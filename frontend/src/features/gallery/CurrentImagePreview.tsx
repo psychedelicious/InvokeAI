@@ -1,7 +1,7 @@
 import { IconButton, Image } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
+import { RootState, useAppDispatch, useAppSelector } from 'app/store';
 import {
   GalleryCategory,
   GalleryState,
@@ -10,7 +10,7 @@ import {
 } from './gallerySlice';
 import { createSelector } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { OptionsState } from '../options/optionsSlice';
+import { OptionsState, setIsLightBoxOpen } from 'features/options/optionsSlice';
 import ImageMetadataViewer from './ImageMetaDataViewer/ImageMetadataViewer';
 
 export const imagesSelector = createSelector(
@@ -78,6 +78,10 @@ export default function CurrentImagePreview() {
     dispatch(selectNextImage());
   };
 
+  const handleLightBox = () => {
+    dispatch(setIsLightBoxOpen(true));
+  };
+
   return (
     <div className={'current-image-preview'}>
       {imageToDisplay && (
@@ -85,6 +89,7 @@ export default function CurrentImagePreview() {
           src={imageToDisplay.url}
           width={isIntermediate ? imageToDisplay.width : undefined}
           height={isIntermediate ? imageToDisplay.height : undefined}
+          onClick={handleLightBox}
         />
       )}
       {!shouldShowImageDetails && (
