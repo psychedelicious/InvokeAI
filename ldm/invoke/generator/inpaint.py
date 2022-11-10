@@ -17,6 +17,8 @@ from ldm.models.diffusion.ddim     import DDIMSampler
 from ldm.models.diffusion.ksampler import KSampler
 from ldm.invoke.generator.base import downsampling
 from ldm.util import debug_image
+from patchmatch import patch_match
+
 
 class Inpaint(Img2Img):
     def __init__(self, model, precision):
@@ -47,6 +49,13 @@ class Inpaint(Img2Img):
         # Only fill if there's an alpha layer
         if im.mode != 'RGBA':
             return im
+
+        # NOTE: HACK TO USE PATCHMATCH
+        im_patched_np = patch_match.inpaint(im.convert('RGB'), ImageOps.invert(im.split()[-1]), patch_size = 3)
+        im_patched = Image.fromarray(im_patched_np, mode = 'RGB')
+        return im_patched
+        
+
 
         a = np.asarray(im, dtype=np.uint8)
 
