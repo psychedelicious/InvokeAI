@@ -695,8 +695,9 @@ class InvokeAIWebServer:
 
                 So we need to convert each into a PIL Image.
                 """
-                init_img_url = generation_parameters["init_img"]
                 truncated_outpaint_mask_b64 = generation_parameters["init_mask"][:64]
+
+                init_img_url = generation_parameters["init_img"]
 
                 init_img_url = generation_parameters["init_img"]
 
@@ -705,11 +706,12 @@ class InvokeAIWebServer:
                 original_image = Image.open(init_img_path)
 
                 rgba_image = original_image.convert("RGBA")
-
                 # copy a region from it which we will inpaint
                 cropped_init_image = copy_image_from_bounding_box(
                     rgba_image, **generation_parameters["bounding_box"]
                 )
+
+                original_bounding_box = generation_parameters["bounding_box"].copy()
 
                 generation_parameters["init_img"] = cropped_init_image
 
