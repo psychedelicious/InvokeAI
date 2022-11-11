@@ -1,4 +1,4 @@
-import { IconButton, Image } from '@chakra-ui/react';
+import { IconButton, Image, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { RootState, useAppDispatch, useAppSelector } from 'app/store';
@@ -12,6 +12,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import { OptionsState, setIsLightBoxOpen } from 'features/options/optionsSlice';
 import ImageMetadataViewer from './ImageMetaDataViewer/ImageMetadataViewer';
+import FlexibleLoadingSpinner from 'common/components/FlexibleLoadingSpinner';
 
 export const imagesSelector = createSelector(
   [(state: RootState) => state.gallery, (state: RootState) => state.options],
@@ -30,8 +31,6 @@ export const imagesSelector = createSelector(
 
     return {
       imageToDisplay: intermediateImage ? intermediateImage : currentImage,
-      viewerImageToDisplay: currentImage,
-      isIntermediate: intermediateImage,
       currentCategory,
       isOnFirstImage: currentImageIndex === 0,
       isOnLastImage:
@@ -57,7 +56,6 @@ export default function CurrentImagePreview() {
     isOnLastImage,
     shouldShowImageDetails,
     imageToDisplay,
-    isIntermediate,
   } = useAppSelector(imagesSelector);
 
   const [shouldShowNextPrevButtons, setShouldShowNextPrevButtons] =
@@ -88,8 +86,8 @@ export default function CurrentImagePreview() {
       {imageToDisplay && (
         <Image
           src={imageToDisplay.url}
-          width={isIntermediate ? imageToDisplay.width : undefined}
-          height={isIntermediate ? imageToDisplay.height : undefined}
+          width={imageToDisplay.width}
+          height={imageToDisplay.height}
           onClick={handleLightBox}
         />
       )}
