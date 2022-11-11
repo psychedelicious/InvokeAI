@@ -30,6 +30,7 @@ export const imagesSelector = createSelector(
 
     return {
       imageToDisplay: intermediateImage ? intermediateImage : currentImage,
+      viewerImageToDisplay: currentImage,
       isIntermediate: intermediateImage,
       currentCategory,
       isOnFirstImage: currentImageIndex === 0,
