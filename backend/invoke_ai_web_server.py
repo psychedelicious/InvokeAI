@@ -10,7 +10,7 @@ import base64
 import os
 
 from werkzeug.utils import secure_filename
-from flask import Flask, redirect, send_from_directory, flash, request, url_for, jsonify
+from flask import Flask, redirect, send_from_directory, request, make_response
 from flask_socketio import SocketIO
 from PIL import Image, ImageOps
 from PIL.Image import Image as ImageType
@@ -104,15 +104,22 @@ class InvokeAIWebServer:
         @self.app.route("/upload", methods=["POST"])
         def upload():
             try:
+                filename = ""
                 # check if the post request has the file part
-                if "file" not in request.files:
-                    return "No file part", 400
-                file = request.files["file"]
-
-                # If the user does not select a file, the browser submits an
-                # empty file without a filename.
-                if file.filename == "":
-                    return "No selected file", 400
+                if "file" in request.files:
+                    file = request.files["file"]
+                    # If the user does not select a file, the browser submits an
+                    # empty file without a filename.
+                    if file.filename == "":
+                        return make_response("No file selected", 400)
+                    filename = file.filename
+                elif "dataURL" in request.form:
+                    file = dataURL_to_bytes(request.form["dataURL"])
+                    if "filename" not in request.form or request.form["filename"] == "":
+                        return make_response("No filename provided", 400)
+                    filename = request.form["filename"]
+                else:
+                    return make_response("No file or dataURL", 400)
 
                 kind = request.form["kind"]
 
@@ -125,15 +132,15 @@ class InvokeAIWebServer:
                 elif kind == "mask":
                     path = self.mask_image_path
                 else:
-                    return f"Invalid upload kind: {kind}", 400
+                    return make_response(f"Invalid upload kind: {kind}", 400)
 
-                if not self.allowed_file(file.filename):
-                    return (
+                if not self.allowed_file(filename):
+                    return make_response(
                         f'Invalid file type, must be one of: {", ".join(self.ALLOWED_EXTENSIONS)}',
                         400,
                     )
 
-                secured_filename = secure_filename(file.filename)
+                secured_filename = secure_filename(filename)
 
                 uuid = uuid4().hex
                 truncated_uuid = uuid[:8]
@@ -143,7 +150,11 @@ class InvokeAIWebServer:
 
                 file_path = os.path.join(path, name)
 
-                file.save(file_path)
+                if "dataURL" in request.form:
+                    with open(file_path, "wb") as f:
+                        f.write(file)
+                else:
+                    file.save(file_path)
 
                 mtime = os.path.getmtime(file_path)
                 (width, height) = Image.open(file_path).size
@@ -157,7 +168,7 @@ class InvokeAIWebServer:
                     },
                 }
 
-                return response, 200
+                return make_response(response, 200)
 
             except Exception as e:
                 self.socketio.emit("error", {"message": (str(e))})
@@ -165,7 +176,7 @@ class InvokeAIWebServer:
 
                 traceback.print_exc()
                 print("\n")
-                return "Error uploading file", 500
+                return make_response("Error uploading file", 500)
 
         self.load_socketio_listeners(self.socketio)
 
@@ -913,11 +924,18 @@ class InvokeAIWebServer:
 
                 (width, height) = image.size
 
+                generated_image_outdir = (
+                    self.result_path
+                    if generation_parameters["generation_mode"]
+                    in ["txt2img", "img2img"]
+                    else self.temp_image_path
+                )
+
                 path = self.save_result_image(
                     image,
                     command,
                     metadata,
-                    self.result_path,
+                    generated_image_outdir,
                     postprocessing=postprocessing,
                 )
 
