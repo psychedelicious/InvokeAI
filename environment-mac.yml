@@ -59,6 +59,7 @@ dependencies:
       - git+https://github.com/invoke-ai/Real-ESRGAN.git#egg=realesrgan
       - git+https://github.com/invoke-ai/GFPGAN.git#egg=gfpgan
       - git+https://github.com/invoke-ai/clipseg.git@models-rename#egg=clipseg
+      - git+https://github.com/invoke-ai/PyPatchMatch@0.1.1#egg=pypatchmatch
       - -e .
 variables:
   PYTORCH_ENABLE_MPS_FALLBACK: 1
