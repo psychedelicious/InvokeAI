@@ -20,7 +20,7 @@ const FloatingGalleryButton = () => {
   return shouldShowGalleryButton ? (
     <IAIIconButton
       tooltip="Show Gallery (G)"
-      tooltipProps={{ placement: 'top' }}
+      tooltipProps={{ placement: 'topa' }}
       aria-label="Show Gallery"
       onClick={handleShowGallery}
       sx={{
