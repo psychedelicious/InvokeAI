@@ -14,7 +14,7 @@ To use:
   # this returns a namespace object like the underlying argparse library)
   # You do not have to use the return value, but you can check it against None
   # to detect illegal arguments on the command line.
-  args = opt.parse_args()
+  args = opt.parse_args()s
   if not args:
      print('oops')
      sys.exit(-1)
