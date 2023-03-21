@@ -1,4 +1,4 @@
-import React, { lazy, PropsWithChildren } from 'react';
+import React, { lazy, PropsWithChildren, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store } from './app/store';
@@ -17,18 +17,27 @@ import Loading from './Loading';
 
 // Localization
 import './i18n';
+import { OpenAPI } from 'services/api';
 
 const App = lazy(() => import('./app/App'));
 const ThemeLocaleProvider = lazy(() => import('./app/ThemeLocaleProvider'));
 
-export default function Component(props: PropsWithChildren) {
+interface Props extends PropsWithChildren {
+  apiUrl?: string;
+}
+
+export default function Component({ apiUrl, children }: Props) {
+  useEffect(() => {
+    if (apiUrl) OpenAPI.BASE = apiUrl;
+  }, [apiUrl]);
+
   return (
     <React.StrictMode>
       <Provider store={store}>
         <PersistGate loading={<Loading />} persistor={persistor}>
           <React.Suspense fallback={<Loading showText />}>
             <ThemeLocaleProvider>
-              <App>{props.children}</App>
+              <App>{children}</App>
             </ThemeLocaleProvider>
           </React.Suspense>
         </PersistGate>
