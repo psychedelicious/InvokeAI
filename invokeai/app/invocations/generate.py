@@ -14,9 +14,9 @@ from ..services.image_storage import ImageType
 from ..services.invocation_services import InvocationServices
 from .baseinvocation import BaseInvocation, InvocationContext
 from .image import ImageField, ImageOutput
-from ...backend.generator import Txt2Img, Img2Img, Inpaint, InvokeAIGenerator, Generator
+from ...backend.generator import Txt2Img, Img2Img, Inpaint, InvokeAIGenerator
 from ...backend.stable_diffusion import PipelineIntermediateState
-from ...backend.util.util import image_to_dataURL
+from ..util.util import diffusers_step_callback_adapter, CanceledException
 
 SAMPLER_NAME_VALUES = Literal[
     tuple(InvokeAIGenerator.schedulers())
@@ -47,29 +47,12 @@ class TextToImageInvocation(BaseInvocation):
     def dispatch_progress(
         self, context: InvocationContext, sample: Tensor, step: int
     ) -> None:  
-        # TODO: only output a preview image when requested
-        image = Generator.sample_to_lowres_estimated_image(sample)
-
-        (width, height) = image.size
-        width *= 8
-        height *= 8
-
-        dataURL = image_to_dataURL(image, image_format="JPEG")
-
-        context.services.events.emit_generator_progress(
-            context.graph_execution_state_id,
-            self.id,
-            {
-                "width": width,
-                "height": height,
-                "dataURL": dataURL
-            },
-            step,
-            self.steps,
-        )
+        diffusers_step_callback_adapter(sample, step, steps=self.steps, id=self.id, context=context)
 
     def invoke(self, context: InvocationContext) -> ImageOutput:
         def step_callback(state: PipelineIntermediateState):
+            if (context.services.queue.is_canceled(context.graph_execution_state_id)):
+                raise CanceledException
             self.dispatch_progress(context, state.latents, state.step)
 
         # Handle invalid model parameter
@@ -116,6 +99,11 @@ class ImageToImageInvocation(TextToImageInvocation):
         description="Whether or not the result should be fit to the aspect ratio of the input image",
     )
 
+    def dispatch_progress(
+        self, context: InvocationContext, sample: Tensor, step: int
+    ) -> None:  
+        diffusers_step_callback_adapter(sample, step, steps=self.steps, id=self.id, context=context)
+
     def invoke(self, context: InvocationContext) -> ImageOutput:
         image = (
             None
@@ -127,6 +115,8 @@ class ImageToImageInvocation(TextToImageInvocation):
         mask = None
 
         def step_callback(sample, step=0):
+            if (context.services.queue.is_canceled(context.graph_execution_state_id)):
+                raise CanceledException
             self.dispatch_progress(context, sample, step)
 
         # Handle invalid model parameter
@@ -173,6 +163,11 @@ class InpaintInvocation(ImageToImageInvocation):
         description="The amount by which to replace masked areas with latent noise",
     )
 
+    def dispatch_progress(
+        self, context: InvocationContext, sample: Tensor, step: int
+    ) -> None:  
+        diffusers_step_callback_adapter(sample, step, steps=self.steps, id=self.id, context=context)
+
     def invoke(self, context: InvocationContext) -> ImageOutput:
         image = (
             None
@@ -188,6 +183,8 @@ class InpaintInvocation(ImageToImageInvocation):
         )
 
         def step_callback(sample, step=0):
+            if (context.services.queue.is_canceled(context.graph_execution_state_id)):
+                raise CanceledException
             self.dispatch_progress(context, sample, step)
 
         # Handle invalid model parameter
