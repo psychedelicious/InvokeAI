@@ -6,7 +6,6 @@
     "prepare": "cd ../../../ && husky install invokeai/frontend/web/.husky",
     "dev": "concurrently \"vite dev\" \"yarn run theme:watch\"",
     "build": "yarn run lint && vite build",
-    "build:package": "vite build --mode=package",
     "api:web": "openapi -i http://localhost:9090/openapi.json -o src/services/api --client axios --useOptions --useUnionTypes --exportSchemas true --indent 2",
     "api:file": "openapi -i openapi.json -o src/services/api --client axios --useOptions --useUnionTypes --exportSchemas true --indent 2",
     "preview": "vite preview",
