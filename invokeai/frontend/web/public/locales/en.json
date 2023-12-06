@@ -1624,7 +1624,7 @@
     },
     "workflows": {
         "workflows": "Workflows",
-        "workflowLibrary": "Workflow Library",
+        "workflowLibrary": "Library",
         "userWorkflows": "My Workflows",
         "defaultWorkflows": "Default Workflows",
         "openWorkflow": "Open Workflow",
@@ -1634,6 +1634,7 @@
         "downloadWorkflow": "Download Workflow",
         "saveWorkflow": "Save Workflow",
         "saveWorkflowAs": "Save Workflow As",
+        "savingWorkflow": "Saving Workflow...",
         "problemSavingWorkflow": "Problem Saving Workflow",
         "workflowSaved": "Workflow Saved",
         "noRecentWorkflows": "No Recent Workflows",
@@ -1645,7 +1646,8 @@
         "searchWorkflows": "Search Workflows",
         "clearWorkflowSearchFilter": "Clear Workflow Search Filter",
         "workflowName": "Workflow Name",
-        "workflowEditorReset": "Workflow Editor Reset"
+        "workflowEditorReset": "Workflow Editor Reset",
+        "workflowEditorMenu": "Workflow Editor Menu"
     },
     "app": {
         "storeNotInitialized": "Store is not initialized"
