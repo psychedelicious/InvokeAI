@@ -170,7 +170,8 @@
         "updated": "Updated",
         "created": "Created",
         "prevPage": "Previous Page",
-        "nextPage": "Next Page"
+        "nextPage": "Next Page",
+        "unsaved": "Unsaved"
     },
     "controlnet": {
         "controlAdapter_one": "Control Adapter",
