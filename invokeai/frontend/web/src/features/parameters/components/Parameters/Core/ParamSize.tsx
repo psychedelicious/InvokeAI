@@ -9,14 +9,12 @@ import {
   setShouldLockAspectRatio,
   toggleSize,
 } from 'features/parameters/store/generationSlice';
+import { activeTabNameSelector } from 'features/ui/store/uiSelectors';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaLock } from 'react-icons/fa';
 import { MdOutlineSwapVert } from 'react-icons/md';
-import { activeTabNameSelector } from 'features/ui/store/uiSelectors';
 import ParamAspectRatio, { mappedAspectRatios } from './ParamAspectRatio';
-import ParamHeight from './ParamHeight';
-import ParamWidth from './ParamWidth';
 
 const sizeOptsSelector = createMemoizedSelector(
   [stateSelector, activeTabNameSelector],
@@ -111,18 +109,7 @@ export default function ParamSize() {
         </FormControl>
       </IAIInformationalPopover>
       <Flex gap={2} alignItems="center">
-        <Flex gap={2} flexDirection="column" width="full">
-          <ParamWidth
-            isDisabled={
-              activeTabName === 'img2img' ? !shouldFitToWidthHeight : false
-            }
-          />
-          <ParamHeight
-            isDisabled={
-              activeTabName === 'img2img' ? !shouldFitToWidthHeight : false
-            }
-          />
-        </Flex>
+        <Flex gap={2} flexDirection="column" width="full"></Flex>
       </Flex>
     </Flex>
   );

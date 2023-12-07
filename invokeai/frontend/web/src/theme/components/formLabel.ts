@@ -1,12 +1,16 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system';
 import { mode } from '@chakra-ui/theme-tools';
 
-const invokeAI = defineStyle((props) => {
+const baseStyle = defineStyle((props) => {
   return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 2,
     fontSize: 'sm',
-    marginEnd: 0,
-    mb: 1,
-    fontWeight: '400',
+    me: 0,
+    mb: 0,
+    fontWeight: 600,
     transitionProperty: 'common',
     transitionDuration: 'normal',
     whiteSpace: 'nowrap',
@@ -21,10 +25,5 @@ const invokeAI = defineStyle((props) => {
 });
 
 export const formLabelTheme = defineStyleConfig({
-  variants: {
-    invokeAI,
-  },
-  defaultProps: {
-    variant: 'invokeAI',
-  },
+  baseStyle,
 });

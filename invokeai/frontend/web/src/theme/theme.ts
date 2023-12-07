@@ -5,6 +5,7 @@ import { buttonTheme } from './components/button';
 import { checkboxTheme } from './components/checkbox';
 import { editableTheme } from './components/editable';
 import { formLabelTheme } from './components/formLabel';
+import { formTheme } from './components/form';
 import { inputTheme } from './components/input';
 import { menuTheme } from './components/menu';
 import { modalTheme } from './components/modal';
@@ -148,6 +149,7 @@ export const theme: ThemeOverride = {
     Text: textTheme,
     Tooltip: tooltipTheme,
     Heading: headingTheme,
+    Form: formTheme,
   },
 };
 

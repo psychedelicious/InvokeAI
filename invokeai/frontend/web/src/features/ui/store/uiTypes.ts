@@ -18,6 +18,9 @@ export interface UIState {
   shouldShowImageDetails: boolean;
   shouldUseCanvasBetaLayout: boolean;
   shouldShowExistingModelsInSearch: boolean;
+  /**
+   * @deprecated since now
+   */
   shouldUseSliders: boolean;
   shouldHidePreview: boolean;
   shouldShowProgressInViewer: boolean;

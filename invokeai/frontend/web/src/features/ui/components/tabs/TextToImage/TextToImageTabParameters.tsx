@@ -7,11 +7,13 @@ import ParamHrfCollapse from 'features/parameters/components/Parameters/HighResF
 import { memo } from 'react';
 import ParamPromptArea from 'features/parameters/components/Parameters/Prompt/ParamPromptArea';
 import TextToImageTabCoreParameters from './TextToImageTabCoreParameters';
+import ImageSizeCollapse from 'features/imageSize/components/ImageSizeCollapse';
 
 const TextToImageTabParameters = () => {
   return (
     <>
       <ParamPromptArea />
+      <ImageSizeCollapse />
       <TextToImageTabCoreParameters />
       <ControlAdaptersCollapse />
       <ParamLoraCollapse />

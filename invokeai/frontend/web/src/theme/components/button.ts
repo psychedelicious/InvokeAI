@@ -76,12 +76,10 @@ const invokeAI = defineStyle((props) => {
 
 const invokeAIOutline = defineStyle((props) => {
   const { colorScheme: c } = props;
-  const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props);
   return {
     border: '1px solid',
-    borderColor: c === 'gray' ? borderColor : 'currentColor',
+    borderColor: mode(`${c}.600`, `${c}.300`)(props),
     _hover: {
-      bg: mode(`${c}.500`, `${c}.500`)(props),
       color: mode('white', `base.50`)(props),
       svg: {
         fill: mode('white', `base.50`)(props),

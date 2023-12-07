@@ -79,6 +79,7 @@
         "file": "File",
         "folder": "Folder",
         "format": "format",
+        "free": "Free",
         "generate": "Generate",
         "githubLabel": "Github",
         "hotkeysLabel": "Hotkeys",
@@ -1032,6 +1033,7 @@
         "zoomOutNodes": "Zoom Out"
     },
     "parameters": {
+        "aspect": "Aspect",
         "aspectRatio": "Aspect Ratio",
         "aspectRatioFree": "Free",
         "boundingBoxHeader": "Bounding Box",
@@ -1072,6 +1074,7 @@
         "imageFit": "Fit Initial Image To Output Size",
         "images": "Images",
         "imageToImage": "Image to Image",
+        "imageSize": "Image Size",
         "img2imgStrength": "Image To Image Strength",
         "infillMethod": "Infill Method",
         "infillScalingHeader": "Infill and Scaling",

@@ -8,7 +8,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const invokeAITrack = defineStyle((props) => {
   return {
     bg: mode('base.400', 'base.600')(props),
-    h: 1.5,
+    h: 2,
   };
 });
 
@@ -16,15 +16,26 @@ const invokeAIFilledTrack = defineStyle((props) => {
   const { colorScheme: c } = props;
   return {
     bg: mode(`${c}.400`, `${c}.600`)(props),
-    h: 1.5,
+    h: 2,
   };
 });
 
 const invokeAIThumb = defineStyle((props) => {
   return {
-    w: props.orientation === 'horizontal' ? 2 : 4,
-    h: props.orientation === 'horizontal' ? 4 : 2,
-    bg: mode('base.50', 'base.100')(props),
+    w: 4,
+    h: 4,
+    bg: mode('base.50', 'accent.400')(props),
+    borderRadius: 'full',
+    borderColor: mode('base.400', 'base.200')(props),
+    borderWidth: 3,
+    _hover: {
+      transform: `translateY(-50%) scale(1.15)`,
+      transition: 'transform 0.1s',
+      _active: {
+        transform: `translateY(-50%) scale(1.22)`,
+        transition: 'transform 0.05s',
+      },
+    },
   };
 });
 
