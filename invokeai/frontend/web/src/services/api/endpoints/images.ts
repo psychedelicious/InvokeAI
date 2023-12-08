@@ -1,5 +1,4 @@
 import { EntityState, Update } from '@reduxjs/toolkit';
-import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { logger } from 'app/logging/logger';
 import {
   ASSETS_CATEGORIES,
@@ -27,13 +26,14 @@ import {
 } from 'services/api/util';
 import { ApiTagDescription, LIST_TAG, api } from '..';
 import { boardsApi } from './boards';
+import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 
 export const imagesApi = api.injectEndpoints({
   endpoints: (build) => ({
     /**
      * Image Queries
      */
-    listImages: build.query<EntityState<ImageDTO>, ListImagesArgs>({
+    listImages: build.query<EntityState<ImageDTO, string>, ListImagesArgs>({
       query: (queryArgs) => ({
         // Use the helper to create the URL.
         url: getListImagesUrl(queryArgs),
@@ -860,7 +860,7 @@ export const imagesApi = api.injectEndpoints({
             },
           ];
 
-          const updates: Update<ImageDTO>[] = deleted_board_images.map(
+          const updates: Update<ImageDTO, string>[] = deleted_board_images.map(
             (image_name) => ({
               id: image_name,
               changes: { board_id: undefined },
