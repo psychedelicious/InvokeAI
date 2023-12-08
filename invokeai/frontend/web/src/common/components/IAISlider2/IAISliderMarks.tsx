@@ -1,10 +1,10 @@
 import { SliderMark, SystemStyleObject } from '@chakra-ui/react';
-import { IAISliderMarksData } from 'common/components/IAISlider/types';
 import { MotionProps, motion } from 'framer-motion';
 import { memo, useMemo } from 'react';
 
 export type IAISliderMarksProps = {
-  marks: IAISliderMarksData;
+  marks: number[];
+  formatValue: (v: number) => string;
 };
 
 const initial: MotionProps['initial'] = { opacity: 0, y: 10 };
@@ -41,13 +41,16 @@ const isNumberArray = (
   return typeof marks[0] === 'number';
 };
 
-const IAISliderMarks = ({ marks: _marks }: IAISliderMarksProps) => {
+const IAISliderMarks = ({
+  marks: _marks,
+  formatValue,
+}: IAISliderMarksProps) => {
   const marks = useMemo<{ value: number; label: string }[]>(() => {
     if (isNumberArray(_marks)) {
-      return _marks.map((m) => ({ value: m, label: m.toString() }));
+      return _marks.map((m) => ({ value: m, label: formatValue(m) }));
     }
     return _marks;
-  }, [_marks]);
+  }, [_marks, formatValue]);
   return (
     <>
       {marks.map((m, i) => {

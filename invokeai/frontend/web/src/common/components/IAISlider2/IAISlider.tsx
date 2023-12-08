@@ -1,13 +1,10 @@
 import {
   FormControl,
-  FormControlProps,
   FormLabel,
-  FormLabelProps,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
-  NumberInputProps,
   NumberInputStepper,
   Slider,
   SliderFilledTrack,
@@ -17,8 +14,8 @@ import {
 } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from 'app/store/storeHooks';
 import IAIIconButton from 'common/components/IAIIconButton';
-import IAISliderMarks from 'common/components/IAISlider/IAISliderMarks';
-import { IAISliderMarksData } from 'common/components/IAISlider/types';
+import IAISliderMarks from 'common/components/IAISlider2/IAISliderMarks';
+import { IAISliderProps } from 'common/components/IAISlider2/types';
 import { roundDownToMultiple } from 'common/util/roundDownToMultiple';
 import { shiftKeyPressed } from 'features/ui/store/hotkeysSlice';
 import { AnimatePresence } from 'framer-motion';
@@ -36,29 +33,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { FaArrowsRotate } from 'react-icons/fa6';
 
-export type IAISliderProps = {
-  label?: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  fineStep?: number;
-  isInteger?: boolean;
-  onChange: (v: number) => void;
-  onReset?: () => void;
-  formatValue?: (v: number) => string;
-  withInput?: boolean;
-  inputMin?: number;
-  inputMax?: number;
-  isDisabled?: boolean;
-  marks?: IAISliderMarksData;
-  hideTooltip?: boolean;
-  formControlProps?: FormControlProps;
-  formLabelProps?: FormLabelProps;
-  numberInputProps?: NumberInputProps;
-};
-
-const IAISlider2 = (props: IAISliderProps) => {
+const IAISlider = (props: IAISliderProps) => {
   const {
     label,
     value,
@@ -66,16 +41,15 @@ const IAISlider2 = (props: IAISliderProps) => {
     max,
     step: _step,
     fineStep: _fineStep,
-    isInteger = false,
     onChange,
     onReset,
-    formatValue,
+    formatValue = (v: number) => v.toString(),
     marks,
     withInput = false,
     inputMin: _inputMin,
     inputMax: _inputMax,
     isDisabled = false,
-    hideTooltip = false,
+    withTooltip = false,
     formControlProps,
     formLabelProps,
     numberInputProps,
@@ -87,6 +61,11 @@ const IAISlider2 = (props: IAISliderProps) => {
   const [isChanging, setIsChanging] = useState(false);
   const [inputValue, setInputValue] = useState<string | number | undefined>(
     String(value)
+  );
+
+  const isInteger = useMemo(
+    () => Number.isInteger(_step) && Number.isInteger(_fineStep),
+    [_step, _fineStep]
   );
 
   useEffect(() => {
@@ -149,14 +128,11 @@ const IAISlider2 = (props: IAISliderProps) => {
   );
 
   const step = useMemo(
-    () => (shift ? _fineStep : _step),
+    () => (shift ? _fineStep ?? _step : _step),
     [_step, _fineStep, shift]
   );
 
-  const tooltip = useMemo(
-    () => (formatValue ? formatValue(value) : value),
-    [formatValue, value]
-  );
+  const tooltip = useMemo(() => formatValue(value), [formatValue, value]);
 
   const onMouseEnter = useCallback(() => setIsMouseOverSlider(true), []);
   const onMouseLeave = useCallback(() => setIsMouseOverSlider(false), []);
@@ -169,7 +145,7 @@ const IAISlider2 = (props: IAISliderProps) => {
       isDisabled={isDisabled}
       {...formControlProps}
     >
-      <FormLabel {...formLabelProps}>
+      <FormLabel {...formLabelProps} pe={onReset ? 1 : 2}>
         {label}
         {onReset && (
           <IAIIconButton
@@ -198,7 +174,7 @@ const IAISlider2 = (props: IAISliderProps) => {
       >
         <AnimatePresence>
           {marks?.length && (isMouseOverSlider || isChanging) && (
-            <IAISliderMarks marks={marks} />
+            <IAISliderMarks marks={marks} formatValue={formatValue} />
           )}
         </AnimatePresence>
 
@@ -209,7 +185,7 @@ const IAISlider2 = (props: IAISliderProps) => {
         <Tooltip
           hasArrow
           placement="top"
-          isOpen={isMouseOverSlider && !hideTooltip}
+          isOpen={(isMouseOverSlider || isChanging) && withTooltip}
           label={tooltip}
         >
           <SliderThumb onDoubleClick={onReset} zIndex={0} />
@@ -238,4 +214,4 @@ const IAISlider2 = (props: IAISliderProps) => {
   );
 };
 
-export default memo(IAISlider2);
+export default memo(IAISlider);
