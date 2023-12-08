@@ -1,8 +1,7 @@
 import { Flex, Icon } from '@chakra-ui/react';
-import { createSelector } from '@reduxjs/toolkit';
+import { createMemoizedSelector } from 'app/store/createMemoizedSelector';
 import { stateSelector } from 'app/store/store';
 import { useAppSelector } from 'app/store/storeHooks';
-import { defaultSelectorOptions } from 'app/store/util/defaultMemoizeOptions';
 import { motion } from 'framer-motion';
 import { memo } from 'react';
 import { FaImage } from 'react-icons/fa';
@@ -15,31 +14,27 @@ const ICON_SIZE_PX = 48;
 const ICON_PADDING_PX = 16;
 const BOX_SIZE = `min(${ICON_SIZE_PX}px, calc(100% - ${ICON_PADDING_PX}px))`;
 
-const selector = createSelector(
-  stateSelector,
-  ({ imageSize }) => {
-    const width_ = imageSize.width;
-    const height_ = imageSize.height;
+const selector = createMemoizedSelector(stateSelector, ({ imageSize }) => {
+  const width_ = imageSize.width;
+  const height_ = imageSize.height;
 
-    const aspectRatio = width_ / height_;
-    let width = width_;
-    let height = height_;
+  const aspectRatio = width_ / height_;
+  let width = width_;
+  let height = height_;
 
-    if (width_ > height_) {
-      width = Math.min(width_, CONTAINER_SIZE_PX);
-      height = width / aspectRatio;
-    } else {
-      height = Math.min(height_, CONTAINER_SIZE_PX);
-      width = height * aspectRatio;
-    }
+  if (width_ > height_) {
+    width = Math.min(width_, CONTAINER_SIZE_PX);
+    height = width / aspectRatio;
+  } else {
+    height = Math.min(height_, CONTAINER_SIZE_PX);
+    width = height * aspectRatio;
+  }
 
-    const shouldShowIcon =
-      aspectRatio < ICON_HIGH_CUTOFF && aspectRatio > ICON_LOW_CUTOFF;
+  const shouldShowIcon =
+    aspectRatio < ICON_HIGH_CUTOFF && aspectRatio > ICON_LOW_CUTOFF;
 
-    return { width, height, shouldShowIcon };
-  },
-  defaultSelectorOptions
-);
+  return { width, height, shouldShowIcon };
+});
 
 const AspectRatioPreview = () => {
   const { width, height, shouldShowIcon } = useAppSelector(selector);
