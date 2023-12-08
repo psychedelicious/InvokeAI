@@ -1,7 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
-import { useAppSelector } from 'app/store/storeHooks';
 import IAICollapse from 'common/components/IAICollapse';
-import ImageSizeCollapse from 'features/imageSize/components/ImageSizeCollapse';
 import ParamCFGScale from 'features/parameters/components/Parameters/Core/ParamCFGScale';
 import ParamIterations from 'features/parameters/components/Parameters/Core/ParamIterations';
 import ParamModelandVAEandScheduler from 'features/parameters/components/Parameters/Core/ParamModelandVAEandScheduler';

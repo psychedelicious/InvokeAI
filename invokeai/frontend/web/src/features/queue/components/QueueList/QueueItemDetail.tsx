@@ -105,7 +105,7 @@ const QueueItemComponent = ({ queueItemDTO }: Props) => {
           borderRadius="base"
           flexDir="column"
         >
-          <Heading size="sm" color="error.500" _dark={{ color: 'error.400' }}>
+          <Heading size="sm" color="error.400">
             {t('common.error')}
           </Heading>
           <pre>{queueItem.error}</pre>

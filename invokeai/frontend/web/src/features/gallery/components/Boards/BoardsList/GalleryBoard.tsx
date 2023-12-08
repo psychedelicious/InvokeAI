@@ -171,10 +171,7 @@ const GalleryBoard = ({
                   alignItems: 'center',
                   borderRadius: 'base',
                   cursor: 'pointer',
-                  bg: 'base.200',
-                  _dark: {
-                    bg: 'base.800',
-                  },
+                  bg: 'base.800',
                 }}
               >
                 {coverImage?.thumbnail_url ? (
@@ -206,25 +203,10 @@ const GalleryBoard = ({
                         mt: -6,
                         opacity: 0.7,
                         color: 'base.500',
-                        _dark: {
-                          color: 'base.500',
-                        },
                       }}
                     />
                   </Flex>
                 )}
-                {/* <Flex
-                  sx={{
-                    position: 'absolute',
-                    insetInlineEnd: 0,
-                    top: 0,
-                    p: 1,
-                  }}
-                >
-                  <Badge variant="solid" sx={BASE_BADGE_STYLES}>
-                    {totalImages}/{totalAssets}
-                  </Badge>
-                </Flex> */}
                 {isSelectedForAutoAdd && <AutoAddIcon />}
                 <SelectionOverlay
                   isSelected={isSelected}
@@ -241,12 +223,8 @@ const GalleryBoard = ({
                     w: 'full',
                     maxW: 'full',
                     borderBottomRadius: 'base',
-                    bg: isSelected ? 'accent.400' : 'base.500',
+                    bg: isSelected ? 'accent.500' : 'base.600',
                     color: isSelected ? 'base.50' : 'base.100',
-                    _dark: {
-                      bg: isSelected ? 'accent.500' : 'base.600',
-                      color: isSelected ? 'base.50' : 'base.100',
-                    },
                     lineHeight: 'short',
                     fontSize: 'xs',
                   }}

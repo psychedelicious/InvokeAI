@@ -5,9 +5,9 @@ import { getInputOutlineStyles } from 'theme/util/getInputOutlineStyles';
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
 
-const invokeAI = definePartsStyle((props) => {
+const invokeAI = definePartsStyle(() => {
   return {
-    field: getInputOutlineStyles(props),
+    field: getInputOutlineStyles(),
   };
 });
 

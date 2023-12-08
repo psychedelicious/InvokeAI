@@ -3,7 +3,6 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from '@chakra-ui/styled-system';
-import { mode } from '@chakra-ui/theme-tools';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
@@ -15,7 +14,7 @@ const baseStylePreview = defineStyle({
   transitionDuration: 'normal',
 });
 
-const baseStyleInput = defineStyle((props) => ({
+const baseStyleInput = defineStyle(() => ({
   borderRadius: 'md',
   py: '1',
   transitionProperty: 'common',
@@ -24,8 +23,8 @@ const baseStyleInput = defineStyle((props) => ({
   _focusVisible: { boxShadow: 'outline' },
   _placeholder: { opacity: 0.6 },
   '::selection': {
-    color: mode('accent.900', 'accent.50')(props),
-    bg: mode('accent.200', 'accent.400')(props),
+    color: 'accent.50',
+    bg: 'accent.400',
   },
 }));
 
@@ -39,9 +38,9 @@ const baseStyleTextarea = defineStyle({
   _placeholder: { opacity: 0.6 },
 });
 
-const invokeAI = definePartsStyle((props) => ({
+const invokeAI = definePartsStyle(() => ({
   preview: baseStylePreview,
-  input: baseStyleInput(props),
+  input: baseStyleInput(),
   textarea: baseStyleTextarea,
 }));
 

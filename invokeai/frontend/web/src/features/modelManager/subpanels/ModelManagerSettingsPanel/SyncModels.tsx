@@ -14,8 +14,7 @@ export default function SyncModels() {
         gap: 4,
         justifyContent: 'space-between',
         alignItems: 'center',
-        bg: 'base.200',
-        _dark: { bg: 'base.800' },
+        bg: 'base.800',
       }}
     >
       <Flex
@@ -25,7 +24,7 @@ export default function SyncModels() {
         }}
       >
         <Text sx={{ fontWeight: 600 }}>{t('modelManager.syncModels')}</Text>
-        <Text fontSize="sm" sx={{ _dark: { color: 'base.400' } }}>
+        <Text fontSize="sm" sx={{ color: 'base.400' }}>
           {t('modelManager.syncModelsDesc')}
         </Text>
       </Flex>

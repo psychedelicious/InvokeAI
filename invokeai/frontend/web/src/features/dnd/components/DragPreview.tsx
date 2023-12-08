@@ -17,13 +17,9 @@ const STYLES: ChakraProps['sx'] = {
   shadow: 'dark-lg',
   borderRadius: 'lg',
   opacity: 0.3,
-  bg: 'base.800',
-  color: 'base.50',
-  _dark: {
-    borderColor: 'base.200',
-    bg: 'base.900',
-    color: 'base.100',
-  },
+  borderColor: 'base.200',
+  bg: 'base.900',
+  color: 'base.100',
 };
 
 const DragPreview = (props: OverlayDragImageProps) => {

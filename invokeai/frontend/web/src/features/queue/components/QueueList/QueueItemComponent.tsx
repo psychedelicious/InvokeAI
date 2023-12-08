@@ -17,7 +17,7 @@ import QueueItemDetail from './QueueItemDetail';
 import { COLUMN_WIDTHS } from './constants';
 import { ListContext } from './types';
 
-const selectedStyles = { bg: 'base.300', _dark: { bg: 'base.750' } };
+const selectedStyles = { bg: 'base.750' };
 
 type InnerItemProps = {
   index: number;

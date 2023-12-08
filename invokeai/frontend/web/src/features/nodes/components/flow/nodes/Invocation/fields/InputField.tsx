@@ -68,8 +68,7 @@ const InputField = ({ nodeId, fieldName }: Props) => {
               gap: 2,
               h: 'full',
               fontWeight: 600,
-              color: 'error.400',
-              _dark: { color: 'error.300' },
+              color: 'error.300',
             }}
           >
             {t('nodes.unknownInput', {

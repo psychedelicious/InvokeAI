@@ -271,10 +271,7 @@ export default function MergeModelsPanel() {
           padding: 4,
           borderRadius: 'base',
           gap: 4,
-          bg: 'base.200',
-          _dark: {
-            bg: 'base.800',
-          },
+          bg: 'base.800',
         }}
       >
         <IAISlider
@@ -299,10 +296,7 @@ export default function MergeModelsPanel() {
           padding: 4,
           borderRadius: 'base',
           gap: 4,
-          bg: 'base.200',
-          _dark: {
-            bg: 'base.800',
-          },
+          bg: 'base.800',
         }}
       >
         <Text fontWeight={500} fontSize="sm" variant="subtext">
@@ -341,10 +335,7 @@ export default function MergeModelsPanel() {
           padding: 4,
           borderRadius: 'base',
           gap: 4,
-          bg: 'base.200',
-          _dark: {
-            bg: 'base.900',
-          },
+          bg: 'base.900',
         }}
       >
         <Flex columnGap={4}>

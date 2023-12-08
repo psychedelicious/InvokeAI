@@ -35,11 +35,8 @@ export default function SDXLConcatLink() {
         sx={{
           top: '1px',
           borderTop: 'none',
-          borderColor: 'base.400',
+          borderColor: 'accent.500',
           ...sharedConcatLinkStyle,
-          _dark: {
-            borderColor: 'accent.500',
-          },
         }}
       />
       <Box
@@ -64,11 +61,8 @@ export default function SDXLConcatLink() {
           top: '3px',
           p: 1,
           borderRadius: 4,
-          bg: 'accent.400',
+          bg: 'accent.500',
           color: 'base.50',
-          _dark: {
-            bg: 'accent.500',
-          },
         }}
       >
         <FaLink size={12} />
@@ -89,11 +83,8 @@ export default function SDXLConcatLink() {
         sx={{
           top: '17px',
           borderBottom: 'none',
-          borderColor: 'base.400',
+          borderColor: 'base.500',
           ...sharedConcatLinkStyle,
-          _dark: {
-            borderColor: 'accent.500',
-          },
         }}
       />
     </Flex>

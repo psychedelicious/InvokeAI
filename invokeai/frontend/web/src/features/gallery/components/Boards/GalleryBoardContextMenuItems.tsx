@@ -19,19 +19,8 @@ const GalleryBoardContextMenuItems = ({ board, setBoardToDelete }: Props) => {
 
   return (
     <>
-      {board.image_count > 0 && (
-        <>
-          {/* <MenuItem
-                    isDisabled={!board.image_count}
-                    icon={<FaImages />}
-                    onClickCapture={handleAddBoardToBatch}
-                  >
-                    Add Board to Batch
-                  </MenuItem> */}
-        </>
-      )}
       <MenuItem
-        sx={{ color: 'error.600', _dark: { color: 'error.300' } }}
+        sx={{ color: 'error.300' }}
         icon={<FaTrash />}
         onClick={handleDelete}
       >

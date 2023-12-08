@@ -243,16 +243,10 @@ const ControlAdapterImagePreview = ({ isSmall, id }: Props) => {
             justifyContent: 'center',
             opacity: 0.8,
             borderRadius: 'base',
-            bg: 'base.400',
-            _dark: {
-              bg: 'base.900',
-            },
+            bg: 'base.900',
           }}
         >
-          <Spinner
-            size="xl"
-            sx={{ color: 'base.100', _dark: { color: 'base.400' } }}
-          />
+          <Spinner size="xl" sx={{ color: 'base.400' }} />
         </Flex>
       )}
     </Flex>

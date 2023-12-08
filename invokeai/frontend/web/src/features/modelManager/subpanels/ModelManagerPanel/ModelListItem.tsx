@@ -89,19 +89,11 @@ export default function ModelListItem(props: ModelListItemProps) {
           borderRadius: 'base',
           w: 'full',
           alignItems: 'center',
-          bg: isSelected ? 'accent.400' : 'base.100',
-          color: isSelected ? 'base.50' : 'base.800',
+          color: isSelected ? 'base.50' : 'base.100',
+          bg: isSelected ? 'accent.600' : 'base.850',
           _hover: {
-            bg: isSelected ? 'accent.500' : 'base.300',
-            color: isSelected ? 'base.50' : 'base.800',
-          },
-          _dark: {
             color: isSelected ? 'base.50' : 'base.100',
-            bg: isSelected ? 'accent.600' : 'base.850',
-            _hover: {
-              color: isSelected ? 'base.50' : 'base.100',
-              bg: isSelected ? 'accent.550' : 'base.700',
-            },
+            bg: isSelected ? 'accent.550' : 'base.700',
           },
         }}
         onClick={handleSelectModel}

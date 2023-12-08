@@ -45,7 +45,7 @@ const ResetWorkflowEditorMenuItem = () => {
       <MenuItem
         as="button"
         icon={<FaTrash />}
-        sx={{ color: 'error.600', _dark: { color: 'error.300' } }}
+        sx={{ color: 'error.300' }}
         onClick={onOpen}
       >
         {t('nodes.resetWorkflow')}

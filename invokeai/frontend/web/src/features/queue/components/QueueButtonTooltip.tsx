@@ -70,11 +70,7 @@ const QueueButtonTooltipContent = ({ prepend = false }: Props) => {
 export default memo(QueueButtonTooltipContent);
 
 const StyledDivider = memo(() => (
-  <Divider
-    opacity={0.2}
-    borderColor="base.50"
-    _dark={{ borderColor: 'base.900' }}
-  />
+  <Divider opacity={0.2} borderColor="base.900" />
 ));
 
 StyledDivider.displayName = 'StyledDivider';

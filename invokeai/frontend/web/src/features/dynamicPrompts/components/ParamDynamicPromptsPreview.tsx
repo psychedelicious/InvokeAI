@@ -30,7 +30,7 @@ const selector = createMemoizedSelector(stateSelector, (state) => {
 });
 
 const listItemStyles: ChakraProps['sx'] = {
-  '&::marker': { color: 'base.500', _dark: { color: 'base.500' } },
+  '&::marker': { color: 'base.500' },
 };
 
 const ParamDynamicPromptsPreview = () => {

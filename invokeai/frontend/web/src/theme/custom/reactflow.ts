@@ -2,12 +2,9 @@ import { SystemStyleObject } from '@chakra-ui/styled-system';
 
 const selectionStyles: SystemStyleObject = {
   backgroundColor: 'accentAlpha.150 !important',
-  borderColor: 'accentAlpha.700 !important',
+  borderColor: 'accent.400 !important',
   borderRadius: 'base !important',
   borderStyle: 'dashed !important',
-  _dark: {
-    borderColor: 'accent.400 !important',
-  },
 };
 
 export const reactflowStyles: SystemStyleObject = {

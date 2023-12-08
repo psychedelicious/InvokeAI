@@ -28,9 +28,7 @@ export default function SettingSwitch(props: SettingSwitchProps) {
         <Text
           sx={{
             fontSize: 14,
-            _dark: {
-              color: 'base.300',
-            },
+            color: 'base.300',
           }}
           {...textProps}
         >
@@ -41,9 +39,8 @@ export default function SettingSwitch(props: SettingSwitchProps) {
             size="xs"
             sx={{
               px: 2,
-              color: 'base.700',
-              bg: 'accent.200',
-              _dark: { bg: 'accent.500', color: 'base.200' },
+              bg: 'accent.500',
+              color: 'base.200',
             }}
             {...badgeProps}
           >

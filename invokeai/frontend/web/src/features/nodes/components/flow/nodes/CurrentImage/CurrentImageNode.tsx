@@ -99,8 +99,7 @@ const Wrapper = (props: PropsWithChildren<{ nodeProps: NodeProps }>) => {
             sx={{
               fontSize: 'sm',
               fontWeight: 600,
-              color: 'base.700',
-              _dark: { color: 'base.200' },
+              color: 'base.200',
             }}
           >
             {t('nodes.currentImage')}

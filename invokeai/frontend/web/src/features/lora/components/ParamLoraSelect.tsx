@@ -81,7 +81,7 @@ const ParamLoRASelect = () => {
   if (loraModels?.ids.length === 0) {
     return (
       <Flex sx={{ justifyContent: 'center', p: 2 }}>
-        <Text sx={{ fontSize: 'sm', color: 'base.500', _dark: 'base.700' }}>
+        <Text sx={{ fontSize: 'sm', color: 'base.700' }}>
           {t('models.noLoRAsInstalled')}
         </Text>
       </Flex>

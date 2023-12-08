@@ -9,10 +9,7 @@ const StyledFlex = (props: PropsWithChildren) => {
         gap: 2,
         p: 4,
         borderRadius: 'base',
-        bg: 'base.100',
-        _dark: {
-          bg: 'base.900',
-        },
+        bg: 'base.900',
       }}
     >
       {props.children}

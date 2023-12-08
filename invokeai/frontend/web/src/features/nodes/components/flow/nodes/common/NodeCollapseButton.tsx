@@ -29,14 +29,8 @@ const NodeCollapseButton = ({ nodeId, isOpen }: Props) => {
         w: 8,
         h: 8,
         color: 'base.500',
-        _dark: {
-          color: 'base.500',
-        },
         _hover: {
-          color: 'base.700',
-          _dark: {
-            color: 'base.300',
-          },
+          color: 'base.300',
         },
       }}
       variant="link"

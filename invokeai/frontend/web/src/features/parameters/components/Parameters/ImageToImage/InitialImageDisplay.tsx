@@ -76,10 +76,7 @@ const InitialImageDisplay = () => {
             ps: 2,
             fontWeight: 600,
             userSelect: 'none',
-            color: 'base.700',
-            _dark: {
-              color: 'base.200',
-            },
+            color: 'base.200',
           }}
         >
           {t('metadata.initImage')}

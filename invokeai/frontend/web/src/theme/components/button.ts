@@ -1,5 +1,4 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 
 const invokeAI = defineStyle((props) => {
   const { colorScheme: c } = props;
@@ -7,35 +6,35 @@ const invokeAI = defineStyle((props) => {
 
   if (c === 'base') {
     const _disabled = {
-      bg: mode('base.150', 'base.700')(props),
-      color: mode('base.300', 'base.500')(props),
+      bg: 'base.700',
+      color: 'base.500',
       svg: {
-        fill: mode('base.300', 'base.500')(props),
+        fill: 'base.500',
       },
       opacity: 1,
     };
 
     const data_progress = {
       bg: 'none',
-      color: mode('base.300', 'base.500')(props),
+      color: 'base.500',
       svg: {
-        fill: mode('base.500', 'base.500')(props),
+        fill: 'base.500',
       },
       opacity: 1,
     };
 
     return {
-      bg: mode('base.250', 'base.600')(props),
-      color: mode('base.850', 'base.100')(props),
+      bg: 'base.600',
+      color: 'base.100',
       borderRadius: 'base',
       svg: {
-        fill: mode('base.850', 'base.100')(props),
+        fill: 'base.100',
       },
       _hover: {
-        bg: mode('base.300', 'base.500')(props),
-        color: mode('base.900', 'base.50')(props),
+        bg: 'base.500',
+        color: 'base.50',
         svg: {
-          fill: mode('base.900', 'base.50')(props),
+          fill: 'base.50',
         },
         _disabled,
       },
@@ -45,10 +44,10 @@ const invokeAI = defineStyle((props) => {
   }
 
   const _disabled = {
-    bg: mode(`${c}.400`, `${c}.700`)(props),
-    color: mode(`${c}.600`, `${c}.500`)(props),
+    bg: `${c}.700`,
+    color: `${c}.500`,
     svg: {
-      fill: mode(`${c}.600`, `${c}.500`)(props),
+      fill: `${c}.500`,
       filter: 'unset',
     },
     opacity: 0.7,
@@ -56,18 +55,18 @@ const invokeAI = defineStyle((props) => {
   };
 
   return {
-    bg: mode(`${c}.400`, `${c}.600`)(props),
-    color: mode(`base.50`, `base.100`)(props),
+    bg: `${c}.600`,
+    color: `base.100`,
     borderRadius: 'base',
     svg: {
-      fill: mode(`base.50`, `base.100`)(props),
+      fill: `base.100`,
     },
     _disabled,
     _hover: {
-      bg: mode(`${c}.500`, `${c}.500`)(props),
-      color: mode('white', `base.50`)(props),
+      bg: `${c}.500`,
+      color: `base.50`,
       svg: {
-        fill: mode('white', `base.50`)(props),
+        fill: `base.50`,
       },
       _disabled,
     },
@@ -78,11 +77,11 @@ const invokeAIOutline = defineStyle((props) => {
   const { colorScheme: c } = props;
   return {
     border: '1px solid',
-    borderColor: mode(`${c}.600`, `${c}.300`)(props),
+    borderColor: `${c}.300`,
     _hover: {
-      color: mode('white', `base.50`)(props),
+      color: `base.50`,
       svg: {
-        fill: mode('white', `base.50`)(props),
+        fill: `base.50`,
       },
     },
     '.chakra-button__group[data-attached][data-orientation=horizontal] > &:not(:last-of-type)':

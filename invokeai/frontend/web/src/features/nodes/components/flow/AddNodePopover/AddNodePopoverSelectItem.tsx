@@ -14,10 +14,7 @@ export const AddNodePopoverSelectItem = forwardRef<HTMLDivElement, ItemProps>(
       <div ref={ref} {...others}>
         <div>
           <Text fontWeight={600}>{label}</Text>
-          <Text
-            size="xs"
-            sx={{ color: 'base.600', _dark: { color: 'base.500' } }}
-          >
+          <Text size="xs" sx={{ color: 'base.500' }}>
             {description}
           </Text>
         </div>

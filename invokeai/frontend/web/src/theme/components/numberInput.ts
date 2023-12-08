@@ -4,18 +4,17 @@ import {
   defineStyle,
 } from '@chakra-ui/styled-system';
 import { getInputOutlineStyles } from 'theme/util/getInputOutlineStyles';
-import { mode } from '@chakra-ui/theme-tools';
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys);
 
-const invokeAIRoot = defineStyle((_props) => {
+const invokeAIRoot = defineStyle(() => {
   return {
     height: 8,
   };
 });
 
-const invokeAIField = defineStyle((props) => {
+const invokeAIField = defineStyle(() => {
   return {
     border: 'none',
     fontWeight: '600',
@@ -23,17 +22,17 @@ const invokeAIField = defineStyle((props) => {
     py: 1,
     ps: 2,
     pe: 6,
-    ...getInputOutlineStyles(props),
+    ...getInputOutlineStyles(),
   };
 });
 
-const invokeAIStepperGroup = defineStyle((_props) => {
+const invokeAIStepperGroup = defineStyle(() => {
   return {
     display: 'flex',
   };
 });
 
-const invokeAIStepper = defineStyle((props) => {
+const invokeAIStepper = defineStyle(() => {
   return {
     border: 'none',
     // expand arrow hitbox
@@ -43,21 +42,21 @@ const invokeAIStepper = defineStyle((props) => {
     my: 0,
 
     svg: {
-      color: mode('base.700', 'base.300')(props),
+      color: 'base.300',
       width: 2.5,
       height: 2.5,
       _hover: {
-        color: mode('base.900', 'base.100')(props),
+        color: 'base.100',
       },
     },
   };
 });
 
-const invokeAI = definePartsStyle((props) => ({
-  root: invokeAIRoot(props),
-  field: invokeAIField(props),
-  stepperGroup: invokeAIStepperGroup(props),
-  stepper: invokeAIStepper(props),
+const invokeAI = definePartsStyle(() => ({
+  root: invokeAIRoot(),
+  field: invokeAIField(),
+  stepperGroup: invokeAIStepperGroup(),
+  stepper: invokeAIStepper(),
 }));
 
 export const numberInputTheme = defineMultiStyleConfig({

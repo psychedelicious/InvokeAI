@@ -23,16 +23,10 @@ const statusIndicatorSelector = createMemoizedSelector(
   }
 );
 
-const DARK_COLOR_MAP = {
+const COLOR_MAP = {
   ok: 'green.400',
   working: 'yellow.400',
   error: 'red.400',
-};
-
-const LIGHT_COLOR_MAP = {
-  ok: 'green.600',
-  working: 'yellow.500',
-  error: 'red.500',
 };
 
 const StatusIndicator = () => {
@@ -81,8 +75,7 @@ const StatusIndicator = () => {
                 fontWeight: '600',
                 pb: '1px',
                 userSelect: 'none',
-                color: LIGHT_COLOR_MAP[statusColor],
-                _dark: { color: DARK_COLOR_MAP[statusColor] },
+                color: COLOR_MAP[statusColor],
               }}
             >
               {t(statusTranslationKey as ResourceKey)}
@@ -94,8 +87,7 @@ const StatusIndicator = () => {
         as={FaCircle}
         sx={{
           boxSize: '0.5rem',
-          color: LIGHT_COLOR_MAP[statusColor],
-          _dark: { color: DARK_COLOR_MAP[statusColor] },
+          color: COLOR_MAP[statusColor],
         }}
       />
     </Flex>

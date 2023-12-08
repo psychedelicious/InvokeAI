@@ -43,8 +43,7 @@ const InvocationNodeUnknownFallback = ({
             w: 'full',
             textAlign: 'center',
             pe: 8,
-            color: 'error.500',
-            _dark: { color: 'error.300' },
+            color: 'error.300',
           }}
         >
           {label ? `${label} (${type})` : type}

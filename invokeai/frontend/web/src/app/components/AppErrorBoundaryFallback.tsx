@@ -70,8 +70,7 @@ const AppErrorBoundaryFallback = ({ error, resetErrorBoundary }: Props) => {
           <Text
             sx={{
               fontWeight: 600,
-              color: 'error.500',
-              _dark: { color: 'error.400' },
+              color: 'error.400',
             }}
           >
             {error.name}: {error.message}

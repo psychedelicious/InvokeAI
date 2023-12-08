@@ -1,13 +1,12 @@
 import { sliderAnatomy as parts } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
 
-const invokeAITrack = defineStyle((props) => {
+const invokeAITrack = defineStyle(() => {
   return {
-    bg: mode('base.400', 'base.600')(props),
+    bg: 'base.600',
     h: 2,
   };
 });
@@ -15,18 +14,18 @@ const invokeAITrack = defineStyle((props) => {
 const invokeAIFilledTrack = defineStyle((props) => {
   const { colorScheme: c } = props;
   return {
-    bg: mode(`${c}.400`, `${c}.600`)(props),
+    bg: `${c}.600`,
     h: 2,
   };
 });
 
-const invokeAIThumb = defineStyle((props) => {
+const invokeAIThumb = defineStyle(() => {
   return {
     w: 4,
     h: 4,
-    bg: mode('base.50', 'accent.400')(props),
+    bg: 'accent.400',
     borderRadius: 'full',
-    borderColor: mode('base.400', 'base.200')(props),
+    borderColor: 'base.200',
     borderWidth: 3,
     _hover: {
       transform: `translateY(-50%) scale(1.15)`,
@@ -39,11 +38,11 @@ const invokeAIThumb = defineStyle((props) => {
   };
 });
 
-const invokeAIMark = defineStyle((props) => {
+const invokeAIMark = defineStyle(() => {
   return {
     fontSize: '2xs',
     fontWeight: '500',
-    color: mode('base.700', 'base.400')(props),
+    color: 'base.400',
     mt: 2,
     insetInlineStart: 'unset',
   };
@@ -57,10 +56,10 @@ const invokeAI = definePartsStyle((props) => ({
       pointerEvents: 'none',
     },
   },
-  track: invokeAITrack(props),
+  track: invokeAITrack(),
   filledTrack: invokeAIFilledTrack(props),
-  thumb: invokeAIThumb(props),
-  mark: invokeAIMark(props),
+  thumb: invokeAIThumb(),
+  mark: invokeAIMark(),
 }));
 
 export const sliderTheme = defineMultiStyleConfig({

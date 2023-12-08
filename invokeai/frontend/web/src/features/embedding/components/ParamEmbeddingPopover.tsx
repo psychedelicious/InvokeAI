@@ -102,10 +102,9 @@ const ParamEmbeddingPopover = (props: Props) => {
           p: 0,
           top: -1,
           shadow: 'dark-lg',
-          borderColor: 'accent.300',
+          borderColor: 'accent.400',
           borderWidth: '2px',
           borderStyle: 'solid',
-          _dark: { borderColor: 'accent.400' },
         }}
       >
         <PopoverBody
@@ -117,8 +116,7 @@ const ParamEmbeddingPopover = (props: Props) => {
                 justifyContent: 'center',
                 p: 2,
                 fontSize: 'sm',
-                color: 'base.500',
-                _dark: { color: 'base.700' },
+                color: 'base.700',
               }}
             >
               <Text>{t('embedding.noEmbeddingsLoaded')}</Text>

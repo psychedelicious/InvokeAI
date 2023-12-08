@@ -115,10 +115,7 @@ const EditableFieldTitle = forwardRef((props: Props, ref) => {
               p: 0,
               w: 'full',
               fontWeight: 600,
-              color: 'base.900',
-              _dark: {
-                color: 'base.100',
-              },
+              color: 'base.100',
               _focusVisible: {
                 p: 0,
                 textAlign: 'left',

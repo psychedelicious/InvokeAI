@@ -1,12 +1,11 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 
-const error = defineStyle((props) => ({
-  color: mode('error.500', 'error.400')(props),
+const error = defineStyle(() => ({
+  color: 'error.400',
 }));
 
-const subtext = defineStyle((props) => ({
-  color: mode('base.500', 'base.400')(props),
+const subtext = defineStyle(() => ({
+  color: 'base.400',
 }));
 
 export const textTheme = defineStyleConfig({

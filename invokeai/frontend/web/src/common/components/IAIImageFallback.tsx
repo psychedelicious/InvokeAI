@@ -36,10 +36,7 @@ export const IAILoadingImageFallback = (props: Props) => {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 'base',
-        bg: 'base.200',
-        _dark: {
-          bg: 'base.900',
-        },
+        bg: 'base.900',
       }}
     >
       <Spinner size="xl" />
@@ -68,10 +65,7 @@ export const IAINoContentFallback = (props: IAINoImageFallbackProps) => {
         gap: 2,
         userSelect: 'none',
         opacity: 0.7,
-        color: 'base.700',
-        _dark: {
-          color: 'base.500',
-        },
+        color: 'base.500',
         ...sx,
       }}
       {...rest}
@@ -103,10 +97,7 @@ export const IAINoContentFallbackWithSpinner = (
         gap: 2,
         userSelect: 'none',
         opacity: 0.7,
-        color: 'base.700',
-        _dark: {
-          color: 'base.500',
-        },
+        color: 'base.500',
         ...sx,
       }}
       {...rest}

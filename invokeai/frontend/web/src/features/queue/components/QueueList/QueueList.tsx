@@ -128,9 +128,7 @@ const QueueList = () => {
   if (!queueItems.length) {
     return (
       <Flex w="full" h="full" alignItems="center" justifyContent="center">
-        <Heading color="base.400" _dark={{ color: 'base.500' }}>
-          {t('queue.queueEmpty')}
-        </Heading>
+        <Heading color="base.500">{t('queue.queueEmpty')}</Heading>
       </Flex>
     );
   }

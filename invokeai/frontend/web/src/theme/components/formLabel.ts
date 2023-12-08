@@ -1,7 +1,6 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system';
-import { mode } from '@chakra-ui/theme-tools';
 
-const baseStyle = defineStyle((props) => {
+const baseStyle = defineStyle(() => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -17,9 +16,9 @@ const baseStyle = defineStyle((props) => {
     _disabled: {
       opacity: 0.4,
     },
-    color: mode('base.700', 'base.300')(props),
+    color: 'base.300',
     _invalid: {
-      color: mode('error.500', 'error.300')(props),
+      color: 'error.300',
     },
   };
 });

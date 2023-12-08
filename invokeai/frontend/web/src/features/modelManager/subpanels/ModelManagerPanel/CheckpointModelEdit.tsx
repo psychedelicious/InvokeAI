@@ -124,8 +124,7 @@ export default function CheckpointModelEdit(props: CheckpointModelEditProps) {
             sx={{
               p: 2,
               borderRadius: 4,
-              bg: 'error.200',
-              _dark: { bg: 'error.400' },
+              bg: 'error.400',
             }}
           >
             {t('modelManager.conversionNotSupported')}

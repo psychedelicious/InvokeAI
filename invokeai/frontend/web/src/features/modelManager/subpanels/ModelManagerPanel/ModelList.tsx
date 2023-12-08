@@ -274,10 +274,7 @@ const StyledModelContainer = memo((props: PropsWithChildren) => {
       borderRadius={4}
       p={4}
       sx={{
-        bg: 'base.200',
-        _dark: {
-          bg: 'base.800',
-        },
+        bg: 'base.800',
       }}
     >
       {props.children}

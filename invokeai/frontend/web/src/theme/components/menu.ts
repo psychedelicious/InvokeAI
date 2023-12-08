@@ -1,44 +1,43 @@
 import { menuAnatomy } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 import { MotionProps } from 'framer-motion';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(menuAnatomy.keys);
 
 // define the base component styles
-const invokeAI = definePartsStyle((props) => ({
+const invokeAI = definePartsStyle(() => ({
   // define the part you're going to style
   button: {
     // this will style the MenuButton component
     fontWeight: 500,
-    bg: mode('base.300', 'base.500')(props),
-    color: mode('base.900', 'base.100')(props),
+    bg: 'base.500',
+    color: 'base.100',
     _hover: {
-      bg: mode('base.400', 'base.600')(props),
-      color: mode('base.900', 'base.50')(props),
+      bg: 'base.600',
+      color: 'base.50',
       fontWeight: 600,
     },
   },
   list: {
     zIndex: 9999,
-    color: mode('base.900', 'base.150')(props),
-    bg: mode('base.200', 'base.800')(props),
+    color: 'base.150',
+    bg: 'base.800',
     shadow: 'dark-lg',
     border: 'none',
   },
   item: {
     // this will style the MenuItem and MenuItemOption components
     fontSize: 'sm',
-    bg: mode('base.200', 'base.800')(props),
+    bg: 'base.800',
     _hover: {
-      bg: mode('base.300', 'base.700')(props),
+      bg: 'base.700',
       svg: {
         opacity: 1,
       },
     },
     _focus: {
-      bg: mode('base.400', 'base.600')(props),
+      bg: 'base.600',
     },
     svg: {
       opacity: 0.7,
@@ -46,7 +45,7 @@ const invokeAI = definePartsStyle((props) => ({
     },
   },
   divider: {
-    borderColor: mode('base.400', 'base.700')(props),
+    borderColor: 'base.700',
   },
 }));
 

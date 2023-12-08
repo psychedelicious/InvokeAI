@@ -30,11 +30,8 @@ const MinimapPanel = () => {
           nodeBorderRadius={15}
           sx={{
             m: '0 !important',
-            backgroundColor: 'base.200 !important',
             borderRadius: 'base',
-            _dark: {
-              backgroundColor: 'base.500 !important',
-            },
+            backgroundColor: 'base.500 !important',
             svg: {
               borderRadius: 'inherit',
             },
