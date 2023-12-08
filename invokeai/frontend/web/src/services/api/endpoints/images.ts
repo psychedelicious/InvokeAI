@@ -359,9 +359,8 @@ export const imagesApi = api.injectEndpoints({
             categories,
           };
 
-          const currentCache = imagesApi.endpoints.listImages.select(queryArgs)(
-            getState()
-          );
+          const currentCache =
+            imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
           const { data } = IMAGE_CATEGORIES.includes(imageDTO.image_category)
             ? boardsApi.endpoints.getBoardImagesTotal.select(
@@ -528,9 +527,8 @@ export const imagesApi = api.injectEndpoints({
               categories,
             };
 
-            const currentCache = imagesApi.endpoints.listImages.select(
-              queryArgs
-            )(getState());
+            const currentCache =
+              imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
             const { data } = IMAGE_CATEGORIES.includes(imageDTO.image_category)
               ? boardsApi.endpoints.getBoardImagesTotal.select(
@@ -643,9 +641,8 @@ export const imagesApi = api.injectEndpoints({
               categories,
             };
 
-            const currentCache = imagesApi.endpoints.listImages.select(
-              queryArgs
-            )(getState());
+            const currentCache =
+              imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
             const { data } = IMAGE_CATEGORIES.includes(imageDTO.image_category)
               ? boardsApi.endpoints.getBoardImagesTotal.select(
@@ -1069,9 +1066,8 @@ export const imagesApi = api.injectEndpoints({
 
           // $cache = board_id/[images|assets]
           const queryArgs = { board_id: board_id ?? 'none', categories };
-          const currentCache = imagesApi.endpoints.listImages.select(queryArgs)(
-            getState()
-          );
+          const currentCache =
+            imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
           // IF it eligible for insertion into existing $cache
           // "eligible" means either:
@@ -1211,9 +1207,8 @@ export const imagesApi = api.injectEndpoints({
 
         // $cache = no_board/[images|assets]
         const queryArgs = { board_id: 'none', categories };
-        const currentCache = imagesApi.endpoints.listImages.select(queryArgs)(
-          getState()
-        );
+        const currentCache =
+          imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
         // IF it eligible for insertion into existing $cache
         // "eligible" means either:
@@ -1358,9 +1353,8 @@ export const imagesApi = api.injectEndpoints({
               categories,
             };
 
-            const currentCache = imagesApi.endpoints.listImages.select(
-              queryArgs
-            )(getState());
+            const currentCache =
+              imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
             const { data } = IMAGE_CATEGORIES.includes(imageDTO.image_category)
               ? boardsApi.endpoints.getBoardImagesTotal.select(
@@ -1506,9 +1500,8 @@ export const imagesApi = api.injectEndpoints({
               categories,
             };
 
-            const currentCache = imagesApi.endpoints.listImages.select(
-              queryArgs
-            )(getState());
+            const currentCache =
+              imagesApi.endpoints.listImages.select(queryArgs)(getState());
 
             const { data } = IMAGE_CATEGORIES.includes(imageDTO.image_category)
               ? boardsApi.endpoints.getBoardImagesTotal.select(
