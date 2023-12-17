@@ -38,8 +38,6 @@ VERSION=$(
     cd ..
     python -c "from invokeai.version import __version__ as version; print(version)"
 )
-PATCH=""
-VERSION="v${VERSION}${PATCH}"
 
 echo -e "${BGREEN}HEAD${RESET}:"
 git_show
@@ -104,10 +102,15 @@ chmod a+x InvokeAI-Installer/install.sh
 perl -p -e "s/^set INVOKEAI_VERSION=.*/set INVOKEAI_VERSION=$VERSION/" install.bat.in >InvokeAI-Installer/install.bat
 cp WinLongPathsEnabled.reg InvokeAI-Installer/
 
+FILENAME=InvokeAI-installer-$VERSION.zip
+
 # Zip everything up
-zip -r InvokeAI-installer-$VERSION.zip InvokeAI-Installer
+zip -r $FILENAME InvokeAI-Installer
 
 # clean up
 rm -rf InvokeAI-Installer tmp dist ../invokeai/frontend/web/dist/
+
+# Set the output variable for github action
+echo "::set-output name=INSTALLER_FILENAME::$FILENAME"
 
 exit 0
