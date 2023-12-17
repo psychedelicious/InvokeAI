@@ -1,6 +1,9 @@
 name: Release
 
 on:
+  push:
+    tags:
+      - '**' # this is guarded by samuelcolvin/check-python-version, which checks that the tag matches the version
   workflow_dispatch:
     inputs:
       publish_package:
@@ -28,6 +31,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install python build dependencies
+        run: pip install --upgrade build twine
+
+      - uses: samuelcolvin/check-python-version@v4
+        id: check-python-version
+        with:
+          skip_env_check: ${{ github.event.inputs.skip_env_check }}
+          version_file_path: invokeai/version/invokeai_version.py
+
       - name: Setup Node 18
         uses: actions/setup-node@v4
         with:
@@ -52,25 +71,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          cache: pip
-          cache-dependency-path: pyproject.toml
-
       - name: Install frontend dependencies
         run: pnpm install --prefer-frozen-lockfile
         working-directory: invokeai/frontend/web
-
-      - name: Install python build dependencies
-        run: pip install --upgrade build twine
-
-      - uses: samuelcolvin/check-python-version@v4
-        id: check-python-version
-        with:
-          skip_env_check: ${{ github.event.inputs.skip_env_check }}
-          version_file_path: invokeai/version/invokeai_version.py
 
       - name: Run create_installer.sh
         id: create_installer

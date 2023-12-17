@@ -58,6 +58,7 @@ VERSION=$(
     cd ..
     python -c "from invokeai.version import __version__ as version; print(version)"
 )
+VERSION="v${VERSION}"
 
 echo -e "${BGREEN}HEAD${RESET}:"
 git_show
