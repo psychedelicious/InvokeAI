@@ -1,4 +1,4 @@
-name: PyPI Release
+name: Release
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
       - name: Install python dependencies
         run: pip install --upgrade build twine
 
-      - uses: samuelcolvin/check-python-version@v1
+      - uses: samuelcolvin/check-python-version@v4
         id: check-python-version
         with:
           skip_env_check: true
