@@ -69,7 +69,7 @@ jobs:
       - uses: samuelcolvin/check-python-version@v4
         id: check-python-version
         with:
-          skip_env_check: github.event.inputs.skip_env_check
+          skip_env_check: ${{ github.event.inputs.skip_env_check }}
           version_file_path: invokeai/version/invokeai_version.py
 
       - name: Run create_installer.sh
@@ -80,5 +80,5 @@ jobs:
       - name: Upload build as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{steps.create_installer.outputs.INSTALLER_NAME}}
-          path: installer/${{steps.create_installer.outputs.INSTALLER_NAME}}
+          name: ${{ steps.create_installer.outputs.INSTALLER_NAME }}
+          path: installer/${{ steps.create_installer.outputs.INSTALLER_NAME }}
