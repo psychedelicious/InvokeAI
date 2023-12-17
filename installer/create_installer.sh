@@ -53,7 +53,7 @@ pnpm i --frozen-lockfile
 echo
 echo "Building frontend..."
 echo
-pnpm build
+pnpm vite build
 popd
 
 # ---------------------- BACKEND ----------------------
