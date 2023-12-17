@@ -1,15 +1,17 @@
-name: style checks
+name: Check Backend
 
 on:
   pull_request:
   push:
-    branches: main
+    branches: [main]
+  workflow_call:
 
 jobs:
-  ruff:
+  check-backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -20,5 +22,8 @@ jobs:
         run: |
           pip install ruff
 
-      - run: ruff check --output-format=github .
-      - run: ruff format --check .
+      - name: Ruff check
+        run: ruff check --output-format=github .
+
+      - name: Ruff format
+        run: ruff format --check .

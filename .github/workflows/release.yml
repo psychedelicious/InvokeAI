@@ -2,10 +2,28 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_package:
+        description: 'Publish build on PyPI [true/false]'
+        required: true
+        default: false
+        type: boolean
+      skip_env_check:
+        description: 'Skip tag check [true/false]'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-  buildrelease:
+  check-frontend:
+    uses: ./.github/workflows/check-frontend.yml
+  check-backend:
+    uses: ./.github/workflows/check-backend.yml
+  pytest:
+    uses: ./.github/workflows/pytest.yml
+  release:
     runs-on: ubuntu-22.04
+    needs: [check-frontend, check-backend, pytest]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,17 +52,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
       - name: Install frontend dependencies
         run: pnpm install --prefer-frozen-lockfile
         working-directory: invokeai/frontend/web
 
-      - name: Install python dependencies
+      - name: Install python build dependencies
         run: pip install --upgrade build twine
 
       - uses: samuelcolvin/check-python-version@v4
         id: check-python-version
         with:
-          skip_env_check: true
+          skip_env_check: github.event.inputs.skip_env_check
           version_file_path: invokeai/version/invokeai_version.py
 
       - name: Run create_installer.sh
@@ -55,4 +80,5 @@ jobs:
       - name: Upload build as workflow artifact
         uses: actions/upload-artifact@v4
         with:
+          name: ${{steps.create_installer.outputs.INSTALLER_NAME}}
           path: installer/${{steps.create_installer.outputs.INSTALLER_NAME}}

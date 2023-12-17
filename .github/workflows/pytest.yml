@@ -1,4 +1,4 @@
-name: Test invoke.py pip
+name: Run pytest
 on:
   push:
     branches:

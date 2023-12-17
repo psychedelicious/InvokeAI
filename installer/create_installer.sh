@@ -111,6 +111,6 @@ zip -r $FILENAME InvokeAI-Installer
 rm -rf InvokeAI-Installer tmp dist ../invokeai/frontend/web/dist/
 
 # Set the output variable for github action
-echo "::set-output name=INSTALLER_FILENAME::$FILENAME"
+echo "INSTALLER_FILENAME=$FILENAME" >>$GITHUB_OUTPUT
 
 exit 0

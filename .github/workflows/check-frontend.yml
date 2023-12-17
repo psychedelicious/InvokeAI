@@ -1,4 +1,4 @@
-name: Lint frontend
+name: Check Frontend
 
 on:
   pull_request:
@@ -11,13 +11,14 @@ on:
       - 'main'
   merge_group:
   workflow_dispatch:
+  workflow_call:
 
 defaults:
   run:
     working-directory: invokeai/frontend/web
 
 jobs:
-  lint-frontend:
+  check-frontend:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-22.04
     steps:
@@ -25,19 +26,40 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: '8.12.1'
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
         run: 'pnpm install --prefer-frozen-lockfile'
+
       - name: Typescript
         run: 'pnpm run lint:tsc'
+
       - name: Madge
         run: 'pnpm run lint:madge'
+
       - name: ESLint
         run: 'pnpm run lint:eslint'
+
       - name: Prettier
         run: 'pnpm run lint:prettier'
