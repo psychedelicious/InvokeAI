@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       publish_package:
-        description: 'Publish build on PyPI [true/false]'
+        description: 'Publish build on PyPI'
         required: true
         default: false
         type: boolean
       skip_env_check:
-        description: 'Skip tag check [true/false]'
+        description: 'Skip tag check'
         required: true
         default: false
         type: boolean
