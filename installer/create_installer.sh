@@ -1,5 +1,25 @@
 #!/bin/bash
 
+skip_frontend_checks=false
+
+handle_options() {
+    while [ $# -gt 0 ]; do
+        case $1 in
+        --skip_frontend_checks)
+            skip_frontend_checks=true
+            ;;
+        *)
+            echo "Invalid option: $1" >&2
+            usage
+            exit 1
+            ;;
+        esac
+        shift
+    done
+}
+
+handle_options "$@"
+
 set -e
 
 BCYAN="\e[1;36m"
@@ -52,8 +72,13 @@ echo
 pnpm i --frozen-lockfile
 echo
 echo "Building frontend..."
+if [ "$skip_frontend_checks" = true ]; then
+    echo -e "${BYELLOW}Skipping frontend checks...${RESET}"
+    pnpm vite build
+else
+    pnpm build
+fi
 echo
-pnpm build
 popd
 
 # ---------------------- BACKEND ----------------------

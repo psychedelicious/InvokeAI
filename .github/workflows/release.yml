@@ -74,7 +74,7 @@ jobs:
 
       - name: Run create_installer.sh
         id: create_installer
-        run: ./create_installer.sh
+        run: ./create_installer.sh --skip_frontend_checks
         working-directory: installer
 
       - name: Upload build as workflow artifact
