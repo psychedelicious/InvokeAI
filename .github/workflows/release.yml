@@ -80,5 +80,5 @@ jobs:
       - name: Upload build as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.create_installer.outputs.INSTALLER_NAME }}
-          path: installer/${{ steps.create_installer.outputs.INSTALLER_NAME }}
+          name: ${{ steps.create_installer.outputs.INSTALLER_FILENAME }}
+          path: ${{ steps.create_installer.outputs.INSTALLER_PATH }}

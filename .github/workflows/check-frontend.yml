@@ -22,26 +22,38 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for changed frontend files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files_yaml: |
+            frontend:
+              - 'invokeai/frontend/web/**'
+
       - name: Setup Node 18
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Setup pnpm
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
 
       - name: Get pnpm store directory
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - uses: actions/cache@v3
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         name: Setup pnpm cache
         with:
           path: ${{ env.STORE_PATH }}
@@ -50,16 +62,21 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         run: 'pnpm install --prefer-frozen-lockfile'
 
       - name: Typescript
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         run: 'pnpm run lint:tsc'
 
       - name: Madge
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         run: 'pnpm run lint:madge'
 
       - name: ESLint
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         run: 'pnpm run lint:eslint'
 
       - name: Prettier
+        if: steps.changed-files.outputs.frontend_any_changed == 'true'
         run: 'pnpm run lint:prettier'

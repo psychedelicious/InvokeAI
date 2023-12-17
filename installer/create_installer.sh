@@ -112,5 +112,6 @@ rm -rf InvokeAI-Installer tmp dist ../invokeai/frontend/web/dist/
 
 # Set the output variable for github action
 echo "INSTALLER_FILENAME=$FILENAME" >>$GITHUB_OUTPUT
+echo "INSTALLER_PATH=installer/$FILENAME" >>$GITHUB_OUTPUT
 
 exit 0
