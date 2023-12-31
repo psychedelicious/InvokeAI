@@ -27,7 +27,7 @@ if ! is_bin_in_path python && is_bin_in_path python3; then
     }
 fi
 
-if [ -n "${VIRTUAL_ENV+set}" ]; then
+if [[ ! -z "${VIRTUAL_ENV}" ]]; then
     # we can't just call 'deactivate' because this function is not exported
     # to the environment of this script from the bash process that runs the script
     echo -e "${BRED}A virtual environment is activated. Please deactivate it before proceeding.${RESET}"
@@ -52,11 +52,12 @@ echo "Installing frontend dependencies..."
 echo
 pnpm i --frozen-lockfile
 echo
-echo "Building frontend..."
-if [[ -v CI ]]; then
+if [[ ! -z ${CI} ]]; then
+    echo "Building frontend without checks..."
     # In CI, we have already done the frontend checks and can just build
     pnpm vite build
 else
+    echo "Running checks and building frontend..."
     # This runs all the frontend checks and builds
     pnpm build
 fi
@@ -112,17 +113,20 @@ cp WinLongPathsEnabled.reg InvokeAI-Installer/
 FILENAME=InvokeAI-installer-$VERSION.zip
 
 # Zip everything up
-zip -r $FILENAME InvokeAI-Installer
+zip -r ${FILENAME} InvokeAI-Installer
 
-if [[ ! -v CI ]]; then
-    # clean up, but only if we are not in a github action
+# clean up, but only if we are not in a github action
+if [[ -z ${CI} ]]; then
+    echo
+    echo "Cleaning up frontend files..."
     rm -rf InvokeAI-Installer tmp dist ../invokeai/frontend/web/dist/
 fi
 
-if [[ -v CI ]]; then
-    # Set the output variable for github action
-    echo "INSTALLER_FILENAME=$FILENAME" >>$GITHUB_OUTPUT
-    echo "INSTALLER_PATH=installer/$FILENAME" >>$GITHUB_OUTPUT
+if [[ ! -z ${CI} ]]; then
+    echo
+    echo "Setting GitHub action outputs..."
+    echo "INSTALLER_FILENAME=${FILENAME}" >>$GITHUB_OUTPUT
+    echo "INSTALLER_PATH=installer/${FILENAME}" >>$GITHUB_OUTPUT
     echo "DIST_PATH=installer/dist/" >>$GITHUB_OUTPUT
 fi
 
