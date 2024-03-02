@@ -56,7 +56,7 @@ def test_use_init(patch_rootdir):
     # so that the values aren't read from ~invokeai/invokeai.yaml and
     # sys.argv respectively.
     from invokeai.app.services.config import InvokeAIAppConfig
-
+    raise ValueError('fail the test')
     conf1 = InvokeAIAppConfig.get_config()
     assert conf1
     conf1.parse_args(conf=init1, argv=[])
