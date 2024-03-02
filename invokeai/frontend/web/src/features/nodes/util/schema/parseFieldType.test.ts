@@ -23,7 +23,7 @@ const primitiveTypes: ParseFieldTypeTestCase[] = [
   {
     name: 'Scalar FloatField',
     schema: { type: 'number' },
-    expected: { name: 'FloatField', isCollection: false, isCollectionOrScalar: false },
+    expected: { name: 'FloatFieldA', isCollection: false, isCollectionOrScalar: false },
   },
   {
     name: 'Scalar StringField',
