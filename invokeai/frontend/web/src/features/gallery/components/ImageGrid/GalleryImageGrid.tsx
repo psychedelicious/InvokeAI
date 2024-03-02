@@ -24,11 +24,11 @@ const components: GridComponents = {
   List: ImageGridListContainer,
 };
 
-const virtuosoStyles: CSSProperties = { height:  '100%' };
+const virtuosoStyles: CSSProperties = { height: '100%' };
 
 const GalleryImageGrid = () => {
   const { t } = useTranslation();
-  const rootRef = useRef<string>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const [scroller, setScroller] = useState<HTMLElement | null>(null);
   const [initialize, osInstance] = useOverlayScrollbars(overlayScrollbarsParams);
   const selectedBoardId = useAppSelector((s) => s.gallery.selectedBoardId);
