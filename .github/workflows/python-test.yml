@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  matrix:
     strategy:
       matrix:
         python-version:
@@ -86,17 +86,3 @@ jobs:
       - name: run pytest
         if: ${{ steps.changed-files.outputs.python_any_changed == 'true' }}
         run: pytest
-
-  python-tests:
-    needs: test
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: fail on test failure
-        run: exit 1
-        if: >-
-          ${{
-            contains(needs.*.result, 'failure')
-            || contains(needs.*.result, 'cancelled')
-            || contains(needs.*.result, 'skipped')
-          }}
