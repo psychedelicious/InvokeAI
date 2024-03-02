@@ -57,6 +57,8 @@ def test_use_init(patch_rootdir):
     # sys.argv respectively.
     from invokeai.app.services.config import InvokeAIAppConfig
 
+    raise ValueError("boom")
+
     conf1 = InvokeAIAppConfig.get_config()
     assert conf1
     conf1.parse_args(conf=init1, argv=[])
