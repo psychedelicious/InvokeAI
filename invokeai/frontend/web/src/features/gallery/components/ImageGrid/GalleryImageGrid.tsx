@@ -25,7 +25,7 @@ const components: GridComponents = {
 };
 
 const virtuosoStyles: CSSProperties = { height: '100%' };
-
+  
 const GalleryImageGrid = () => {
   const { t } = useTranslation();
   const rootRef = useRef<HTMLDivElement>(null);
