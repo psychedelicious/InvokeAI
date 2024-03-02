@@ -14,7 +14,7 @@ app_config = InvokeAIAppConfig.get_config()
 app_config.parse_args()
 if app_config.version:
     print(f"InvokeAI version {__version__}")
-    sys.exit(0)
+    sys.exit(0)  
 
 if True:  # hack to make flake8 happy with imports coming after setting up the config
     import asyncio
